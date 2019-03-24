@@ -1,0 +1,9 @@
+.keyButton{
+  background-color: #62626c;
+  color: white;
+  height: 80px;
+  width: 80px;
+  margin: 15px 0 0 15px;
+  border-shadow: 2px 2px 2px black;
+  border: 1px solid #5b5656;
+}

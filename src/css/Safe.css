@@ -1,0 +1,20 @@
+.safeKeyboard{
+  /* background-color: white; */
+  height: 370px;
+  width: 300px;
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  /* border: 2px solid black; */
+}
+.safeDisplay{
+  background-color: white;
+  height: 60px;
+  width: 300px;
+  position: absolute;
+  left: 50%;
+  top: 45px;
+  transform: translate(-50%, -50%);
+  border: 2px solid black;
+}

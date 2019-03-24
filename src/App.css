@@ -31,3 +31,21 @@
     transform: rotate(360deg);
   }
 }
+
+/* --------CUSTOM---------- */
+
+
+.application{
+  height: 100vh;
+  position: relative;
+  background-image: url('./img/cover.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.idle{
+  height: 100%;
+  width: 100%;
+  background: #0000008c;
+  z-index: 1000;
+  position: absolute;
+}
