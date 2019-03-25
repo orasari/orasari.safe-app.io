@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './../css/Safe.css';
 import KeyButton from './buttons/KeyButton'
-import {numbers, validatePassword, passwordExists, setPassword} from '../util/appUtil'
+import {validatePassword, passwordExists, setPassword, servicePassEntered} from '../util/appUtil'
+import {numbers} from '../util/constantsUtil'
 import _ from 'lodash';
 import {connect} from 'react-redux'
-import {submitPasscodeAction, checkMasterCode} from '../actions/actionCreators'
+import {submitPasscodeAction, checkMasterCode, enterServiceMode} from '../actions/actionCreators'
+import { store } from '../store'
 
 class SafeKeyboard extends Component {
   
@@ -26,6 +28,14 @@ class SafeKeyboard extends Component {
   }
 
   submitPasscode(){
+    if(this.props.status === 'Service'){
+      console.log("u service mode je")      
+      this.props.dispatch(checkMasterCode(this.state.passcode))
+    }else{    
+    if(servicePassEntered(this.state.passcode)){
+        console.log("service")
+        this.props.dispatch(enterServiceMode('Service'))
+    }else{
     if(!passwordExists()){
       setPassword(this.state.passcode)
     }else{
@@ -34,10 +44,9 @@ class SafeKeyboard extends Component {
       this.props.dispatch(submitPasscodeAction(true))
     }else {
       console.log("validan NOT")
-      this.props.dispatch(checkMasterCode('123asd'))
       this.props.dispatch(submitPasscodeAction(false))
     }
-  }
+  }}}
     this.setState({passcode: []})
   }
 
@@ -66,7 +75,10 @@ class SafeKeyboard extends Component {
     );
   }
 }
-const mapStateToProps = () => {
-  return {}
+function mapStateToProps(state, ownProps) {
+  let myStore = store.getState();
+  return {
+    status: myStore.status ? myStore.status : 'Ready'
+  }
 }
 export default connect(mapStateToProps)(SafeKeyboard);

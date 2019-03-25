@@ -4,6 +4,8 @@ import HotelSafe from './containers/HotelSafe';
 import {Provider} from 'react-redux'
 import {store} from './store'
 import IdleTimer from 'react-idle-timer'
+import {validatePassword, passwordExists, setPassword, servicePassEntered, handleKeyPress} from './util/appUtil'
+import {submitPasscodeAction, checkMasterCode, enterServiceMode} from './actions/actionCreators'
 
 class App extends Component {
   constructor(props){
@@ -11,9 +13,12 @@ class App extends Component {
     this.idleTimer = null
     this.onAction = this._onAction.bind(this)
     this.onActive = this._onActive.bind(this)
-    this.onIdle = this._onIdle.bind(this)
+    this.onIdle = this._onIdle.bind(this)    
+    this.onKeyClick = this.onKeyClick.bind(this)
+    this.submitPasscode = this.submitPasscode.bind(this)
     this.state={
-      isAppIdle: false
+      isAppIdle: false,
+      passcode: []
     }
   }
 
@@ -27,8 +32,45 @@ class App extends Component {
     this.setState({isAppIdle: true})
   }
 
+  componentDidMount() {
+    document.addEventListener('keydown', this.onKeyClick);
+  }
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.onKeyClick);
+  }
+
+  onKeyClick (event){
+    let keyValue = handleKeyPress(event)
+    if(keyValue==='ENTER'){
+      console.log("ENTER")
+      this.submitPasscode(this.state.passcode, 'nbt')
+    }else
+    this.setState({passcode: [...this.state.passcode, keyValue]})
+  }
+
+  submitPasscode(){
+  
+    if(servicePassEntered(this.state.passcode)){
+        console.log("service")
+        // this.props.dispatch(enterServiceMode('Service'))
+    }else{
+    if(!passwordExists()){
+      setPassword(this.state.passcode)
+    }else{
+    if(validatePassword(this.state.passcode)){
+      console.log("validan ")
+      // this.props.dispatch(submitPasscodeAction(true))
+    }else {
+      console.log("validan NOT")
+      // this.props.dispatch(submitPasscodeAction(false))
+    }
+  }}
+    this.setState({passcode: []})
+  }
+
+ 
   render() {
-    const isIdle = this.state.isAppIdle ? <div className="idle"></div> : <div></div>
+    console.log('pass ',this.state.passcode)
     return (
       <div className="application">
         <IdleTimer
@@ -40,9 +82,7 @@ class App extends Component {
             debounce={250}
             timeout={5000} />
         <Provider store={store}>
-          <HotelSafe/>
-          {isIdle}
-          {/* <div className="idle"></div> */}
+          <HotelSafe isIdle={this.state.isAppIdle}/>
         </Provider>        
       </div>
     );

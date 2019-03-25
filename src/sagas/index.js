@@ -3,8 +3,7 @@ import {fork, takeEvery, all} from "redux-saga/effects";
 import {CHECK_MASTER_CODE} from '../actions/actionTypes'
 import {checkMasterCode} from "./application/checkMasterCode";
 
-function* watchLoadTradesRequest() {
-    console.log("saga")
+function* watchLoadTradesRequest() {    
     yield takeEvery('CHECK_MASTER_CODE', checkMasterCode);
 }
 

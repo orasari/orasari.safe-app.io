@@ -7,7 +7,7 @@ const CHECK_MASTER_CODE = 'url'
 
 export default class ApiSafe {
     static checkMasterCode(masterCode){
-        console.log("Api call")
+        console.log("Api call",masterCode)
         // let request = {
         //     ...DEFAULT_REST_PARAMS_POST,
         //     body: JSON.stringify({

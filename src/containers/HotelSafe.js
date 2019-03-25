@@ -9,7 +9,7 @@ class HotelSafe extends Component {
   render() {
     return (
       <div className='hotelSafe'>
-        <SafeDisplay/>
+        <SafeDisplay isIdle={this.props.isIdle}/>
         <SafeKeyboard/>
       </div>
     );
