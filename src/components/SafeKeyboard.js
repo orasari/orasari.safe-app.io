@@ -4,7 +4,7 @@ import KeyButton from './buttons/KeyButton'
 import {numbers, validatePassword} from '../util/appUtil'
 import _ from 'lodash';
 import {connect} from 'react-redux'
-import {submitPasscodeAction} from '../actions/actionCreators'
+import {submitPasscodeAction, checkMasterCode} from '../actions/actionCreators'
 
 class SafeKeyboard extends Component {
   
@@ -31,6 +31,7 @@ class SafeKeyboard extends Component {
       this.props.dispatch(submitPasscodeAction(true))
     }else {
       console.log("validan NOT")
+      this.props.dispatch(checkMasterCode('123asd'))
       this.props.dispatch(submitPasscodeAction(false))
     }
     this.setState({passcode: []})

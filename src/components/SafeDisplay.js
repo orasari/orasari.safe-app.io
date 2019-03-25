@@ -5,7 +5,7 @@ import { store } from '../store'
 
 class SafeDisplay extends Component {
   render() {
-    console.log(store.getState())
+    // console.log(store.getState())
     return (
       <div className='safeDisplay'>
         {this.props.isUnlocked ?
