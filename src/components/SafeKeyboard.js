@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './../css/Safe.css';
 import KeyButton from './buttons/KeyButton'
-import {numbers, validatePassword} from '../util/appUtil'
+import {numbers, validatePassword, passwordExists, setPassword} from '../util/appUtil'
 import _ from 'lodash';
 import {connect} from 'react-redux'
 import {submitPasscodeAction, checkMasterCode} from '../actions/actionCreators'
@@ -26,6 +26,9 @@ class SafeKeyboard extends Component {
   }
 
   submitPasscode(){
+    if(!passwordExists()){
+      setPassword(this.state.passcode)
+    }else{
     if(validatePassword(this.state.passcode)){
       console.log("validan ")
       this.props.dispatch(submitPasscodeAction(true))
@@ -34,6 +37,7 @@ class SafeKeyboard extends Component {
       this.props.dispatch(checkMasterCode('123asd'))
       this.props.dispatch(submitPasscodeAction(false))
     }
+  }
     this.setState({passcode: []})
   }
 

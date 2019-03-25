@@ -11,10 +11,20 @@ export const REST_ROOT_ENDPOINT = 'http://localhost/3000'
 
 export const numbers = ['1','2','3','4','5','6','7','8','9','*','0','L']
 
-const password = '290793'
+const password = JSON.parse(localStorage.getItem('password'))
+
+export const passwordExists = () => {
+    var pass = localStorage.getItem('password')
+    if(pass) {
+        return true;
+    }else return false
+}
+export const setPassword = (enteredPass) => { 
+    localStorage.setItem('password', enteredPass.join(''));
+}
 
 export const validatePassword = (enteredPass) =>{
-    let validPass = password.split('')
+    let validPass = password+''
     let validan = false;
     for(let i=0; i<enteredPass.length; i++){
         if(enteredPass[i]==validPass[i]) {
