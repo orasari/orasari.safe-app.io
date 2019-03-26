@@ -5,7 +5,7 @@ import {validatePassword, passwordExists, setPassword, servicePassEntered} from 
 import {numbers} from '../util/constantsUtil'
 import _ from 'lodash';
 import {connect} from 'react-redux'
-import {submitPasscodeAction, checkMasterCode, enterServiceMode, isLoading} from '../actions/actionCreators'
+import {submitPasscodeAction, checkMasterCode, enterServiceMode, isLoading, isValidating, toggleLock} from '../actions/actionCreators'
 import { store } from '../store'
 
 class SafeKeyboard extends Component {
@@ -21,17 +21,31 @@ class SafeKeyboard extends Component {
     this.submitPasscode = this.submitPasscode.bind(this)
   }
 
-  
+ 
   onDelayedCallback (event){
       event.persist()
       this.delayedCallback(event)
   }
 
   submitPasscode(){
-    this.props.dispatch(isLoading('Unlocking'))
+    if(this.state.passcode && this.state.passcode.length>0){
+    
+    //If it is in service mode, dispatch validating
+    if(servicePassEntered(this.state.passcode)){
+      console.log("u service mode je")      
+      // this.props.dispatch(isValidating('Validation'))
+      this.props.dispatch(enterServiceMode('Service'))
+      this.setState({passcode: []})
+      return;
+    } else if(this.props.status !== 'Service') {
+      this.props.dispatch(isLoading('Unlocking'))
+    }
+
+
     setTimeout(()=>{
+      console.log("usao u set timeout")
       if(this.props.status === 'Service'){
-        console.log("u service mode je")      
+        console.log("u service mode je ddd")      
         this.props.dispatch(checkMasterCode(this.state.passcode))
       }
       else{
@@ -43,6 +57,7 @@ class SafeKeyboard extends Component {
             else{
                 if(!passwordExists()){
                   setPassword(this.state.passcode)
+                  setTimeout((this.props.dispatch(toggleLock(true, 'Ready'))), 3000)
                 }else{
                   if(validatePassword(this.state.passcode)){
                     console.log("validan ")
@@ -56,13 +71,13 @@ class SafeKeyboard extends Component {
          }
       }
       this.setState({passcode: []})   
-    }, 3000)
+    }, 3000)}
   }
 
   onKeyClick (keyValue){
     if(keyValue==='L'){      
       this.props.dispatch(isLoading('Locking'))
-      setTimeout(this.props.dispatch(submitPasscodeAction(false, 'LOCKING')), 3000)
+      setTimeout((this.props.dispatch(toggleLock(false, 'Ready'))), 3000)
     }else
     this.setState({passcode: [...this.state.passcode, keyValue]})
   }

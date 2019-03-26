@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './../css/Safe.css';
-import { connect } from 'react-redux'
 
 class Locking extends Component {
   render() {

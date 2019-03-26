@@ -1,4 +1,5 @@
 const password = JSON.parse(localStorage.getItem('password'))
+export const serialNumber = {sn: 4815162342}
 
 export const passwordExists = () => {
     var pass = localStorage.getItem('password')
@@ -11,7 +12,7 @@ export const servicePassEntered = (enteredPass) => {
     let validPass = '000000'
     let validan = false;
     for(let i=0; i<enteredPass.length; i++){
-        if(enteredPass[i]==validPass[i]) {
+        if(enteredPass[i]===validPass[i]) {
             validan=true
         }else {
             validan=false
@@ -24,14 +25,14 @@ export const servicePassEntered = (enteredPass) => {
 }
 
 export const setPassword = (enteredPass) => { 
-    localStorage.setItem('password', enteredPass.join(''));
+    localStorage.setItem('password', enteredPass.join(''));    
 }
 
 export const validatePassword = (enteredPass) =>{
     let validPass = password+''
     let validan = false;
     for(let i=0; i<enteredPass.length; i++){
-        if(enteredPass[i]==validPass[i]) {
+        if(enteredPass[i]===validPass[i]) {
             validan=true
         }else {
             validan=false
@@ -48,43 +49,43 @@ export function handleKeyPress(event) {
     switch(event.keyCode){
       case 49: 
       return 1
-      break;
+    //   break;
       case 50: 
       return 2
-      break;
+    //   break;
       case 51:
       return 3
-      break;
+    //   break;
       case 52:
       return 4
-      break
+    //   break
       case 53: 
       return 5
-      break;
+    //   break;
       case 54: 
       return 6
-      break;
+    //   break;
       case 55:
       return 7
-      break;
+    //   break;
       case 56:
       return 8
-      break
+    //   break
       case 57: 
       return 9
-      break;
+    //   break;
       case 48: 
       return 0
-      break;
+    //   break;
       case 106:
       return '*'
-      break;
+    //   break;
       case 76:
       return 'L'
-      break      
+    //   break      
       case 13:
       return 'ENTER'
-      break
+    //   break
       default: 
       console.log('Not a valid key pressed')
 

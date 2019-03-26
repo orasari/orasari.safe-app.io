@@ -5,7 +5,7 @@ import {Provider} from 'react-redux'
 import {store} from './store'
 import IdleTimer from 'react-idle-timer'
 import {validatePassword, passwordExists, setPassword, servicePassEntered, handleKeyPress} from './util/appUtil'
-import {submitPasscodeAction, checkMasterCode, enterServiceMode} from './actions/actionCreators'
+// import {submitPasscodeAction, checkMasterCode, enterServiceMode} from './actions/actionCreators'
 
 class App extends Component {
   constructor(props){
@@ -70,7 +70,6 @@ class App extends Component {
 
  
   render() {
-    console.log('pass ',this.state.passcode)
     return (
       <div className="application">
         <IdleTimer

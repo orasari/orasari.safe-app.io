@@ -8,6 +8,7 @@ import Status from './Status'
 class SafeDisplay extends Component {
   render() {
     let classes = this.props.isIdle ? 'safeDisplay backlightIdle' : 'safeDisplay'
+    console.log(this.props.status)
     return (
       <div className={classes}>
         <Locking isUnlocked={this.props.isUnlocked}/>

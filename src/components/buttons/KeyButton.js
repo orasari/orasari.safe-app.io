@@ -3,9 +3,6 @@ import '../../css/KeyButton.css';
 
 
 export default class KeyButton extends Component{
-constructor(props){
-  super(props)
-}
 
 render(){
   return (

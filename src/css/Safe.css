@@ -35,3 +35,10 @@
 .backlightIdle{
   background-color: #47b2b2;
 }
+
+.serialNumber{
+  position: absolute;
+    float: right;
+    margin-top: 570px;
+    margin-left: 270px;
+}

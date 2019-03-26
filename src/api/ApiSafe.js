@@ -1,19 +1,16 @@
-import {
-    DEFAULT_REST_PARAMS_POST,
-    handleApiFetchPOST
-} from '../util/appUtil'
-
-const CHECK_MASTER_CODE = 'url'
+import axios from 'axios';
+import {serialNumber} from '../util/appUtil'
 
 export default class ApiSafe {
     static checkMasterCode(masterCode){
-        console.log("Api call",masterCode)
-        // let request = {
-        //     ...DEFAULT_REST_PARAMS_POST,
-        //     body: JSON.stringify({
-        //         masterCode
-        //     })
-        // }
-        // return handleApiFetchPOST(CHECK_MASTER_CODE, request)
+        axios.get('https://9w4qucosgf.execute-api.eu-central-1.amazonaws.com/default/CR-JS_team_M02a?code=456R987L0123')
+        .then(res => {
+            console.log("Response: ",res.data)
+            if(serialNumber === res.data){
+                console.log('moze')
+            }
+        }
+
+        )
     }
 }
