@@ -1,14 +1,9 @@
-import React, { Component } from 'react';
-import './../css/Safe.css';
+import React from 'react';
 
-class Status extends Component {
-  render() {
-    return (
-      <div className='status'>
-        <p>{this.props.status}</p>       
-      </div>
-    );
-  }
+export default function Status (props) { 
+  return (
+    <div className='status'>
+      <p>{props.status}</p>       
+    </div>
+  );
 }
-
-export default Status;

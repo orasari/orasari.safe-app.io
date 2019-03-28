@@ -1,17 +1,14 @@
-import React, {Component} from 'react';
-import '../../css/KeyButton.css';
+import React from 'react';
 
-
-export default class KeyButton extends Component{
-
-render(){
+export default function KeyButton(props){
   return (
-    <input type='button' className='keyButton' value={this.props.keyNumber}
-      onClick={()=>{this.props.onKeyClick(this.props.keyNumber)}} 
-      onMouseUp={(event)=>{this.props.onDelayedCallback(event)}}
-      >
-           
+    <input 
+      type='button' 
+      className='keyButton'
+      value={props.keyNumber}
+      onClick={()=>{props.onKeyClick(props.keyNumber)}} 
+      onMouseUp={(event)=>{props.onDelayedCallback(event)}}>           
     </input>
   );
 }
-}
+

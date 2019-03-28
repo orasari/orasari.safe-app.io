@@ -7,10 +7,12 @@ export function submitPasscodeAction(valid, locking) {
       locking
     }
   }
-export function checkMasterCode(masterCode) {
+
+export function checkMasterCode(masterCode, serialNumber) {
     return {
       type: CHECK_MASTER_CODE,
-        masterCode
+        masterCode,
+        serialNumber
     }
   }
 
@@ -21,34 +23,30 @@ export function enterServiceMode(status) {
     }
   }
 
-  export function isLoading(loading){
-    return {
-      type: IS_LOADING,
-      loading
-    }
+export function isLoading(loading){
+  return {
+    type: IS_LOADING,
+    loading
   }
+}
   
-  export function toggleLock(valid, status){
-    return {
-      type: TOGGLE_LOCK,
-      valid,
-      status
-    }
+export function toggleLock(valid, status){
+  return {
+    type: TOGGLE_LOCK,
+    valid,
+    status
   }
+}
 
-
-    
-  export function isValidating(validating){
-    return {
-      type: IS_VALIDATING,
-      validating
-    }
+export function isValidating(validating){
+  return {
+    type: IS_VALIDATING,
+    validating
   }
+} 
 
-  
-    
-  export function setSerialNumber(){
-    return {
-      type: SET_SERIAL_NUMBER
-    }
+export function setSerialNumber(){
+  return {
+    type: SET_SERIAL_NUMBER
   }
+}

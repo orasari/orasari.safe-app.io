@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-import '../css/HotelSafe.css';
 import SafeKeyboard from '../components/SafeKeyboard'
 import SafeDisplay from '../components/SafeDisplay'
-import {connect} from 'react-redux'
 import {serialNumber} from '../util/appUtil'
-import {setSerialNumber} from '../actions/actionCreators'
 
-class HotelSafe extends Component {
-  // componentDidMount(){
-  //   this.props.dispatch(setSerialNumber())
-  // }
+export default class HotelSafe extends Component {
 
   render() {
     return (
@@ -24,7 +18,3 @@ class HotelSafe extends Component {
   }
 }
 
-const mapStateToProps = () => {
-  return {}
-}
-export default connect(mapStateToProps)(HotelSafe);

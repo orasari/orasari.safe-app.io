@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
+import './css/main.css';
 import HotelSafe from './containers/HotelSafe';
 import {Provider} from 'react-redux'
 import {store} from './store'
 import IdleTimer from 'react-idle-timer'
 import {validatePassword, passwordExists, setPassword, servicePassEntered, handleKeyPress} from './util/appUtil'
-// import {submitPasscodeAction, checkMasterCode, enterServiceMode} from './actions/actionCreators'
 
 class App extends Component {
   constructor(props){

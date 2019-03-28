@@ -1,37 +1,27 @@
-import ApiSafe from "../../api/ApiSafe";
-import {call, put} from 'redux-saga/effects'
-import {MASTER_CODE_CONFIRMED, SET_SERIAL_NUMBER} from '../../actions/actionTypes'
+import {put} from 'redux-saga/effects'
+import {MASTER_CODE_CONFIRMED} from '../../actions/actionTypes'
 import axios from 'axios'
+const myEndPoint = 'https://9w4qucosgf.execute-api.eu-central-1.amazonaws.com/default/CR-JS_team_M02a'
+
 export function* checkMasterCode(action){
+    
+    let responseApi = yield checkMasterCodeApi(action.masterCode)
 
-
-    let serialNumber = yield setSetialNumber()
-    console.log("serialNumber ", serialNumber)
-
-    async function setSetialNumber(){
-        let response = await axios.get('https://9w4qucosgf.execute-api.eu-central-1.amazonaws.com/default/CR-JS_team_M02a?code=456R987L0123')
-        if(response.status == 200){
-            console.log(response.status)
-        }      
-        console.log("Res po nse ")
-        return response.data
+    if(responseApi.sn === action.serialNumber){
+        //Master code was confirmed and action was dispatched to change the display state
+        yield put({type: MASTER_CODE_CONFIRMED, masterCodeValid: true})
+    }else{
+        //Master code not valid and action was dispatched to change the display state
+        yield put({type: MASTER_CODE_CONFIRMED, masterCodeValid: false})
     }
 
-}
-
-export function* setSerialNumberSaga(action){
-
-    let serialNumber = yield setSetialNumber()
-    console.log("serialNumber ", serialNumber)
-    yield put({type: SET_SERIAL_NUMBER, serialNumber: serialNumber})
-    
-
-    async function setSetialNumber(){
-        let response = await axios.get('https://9w4qucosgf.execute-api.eu-central-1.amazonaws.com/default/CR-JS_team_M02a?code=456R987L0123')
-        if(response.status == 200){
-            console.log(response.status)
-        }      
-        console.log("Res po nse ")
+    async function checkMasterCodeApi(){
+        let response = await axios.get(myEndPoint+'?code='+action.masterCode)
+        if(response.status === 200){   
+        // console.log("Response ",response)
+        }else{
+            throw new Error();
+        }
         return response.data
     }
 
