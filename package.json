@@ -2,7 +2,7 @@
   "name": "computer-rock",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://orasari/orasari.safe-app.io",
+  "homepage": "https://orasari.github.io/orasari.safe-app.io",
   "dependencies": {
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
