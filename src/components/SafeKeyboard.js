@@ -42,6 +42,7 @@ class SafeKeyboard extends Component {
     setTimeout(()=>{
       if(this.props.status === 'Service'){    
         this.props.dispatch(checkMasterCode(this.state.passcode, serialNumber))
+        this.setState({passcode: []}) 
       }
       else{
         if(this.state.passcode.length>0){   
@@ -72,6 +73,7 @@ class SafeKeyboard extends Component {
     if(keyValue==='L' && this.props.status !== 'Service'){      
       this.props.dispatch(isLoading('Locking'))
       setTimeout(()=>{this.props.dispatch(toggleLock(false, 'Ready'))}, 3000)
+      this.setState({passcode: []})
     }else
     this.setState({passcode: [...this.state.passcode, keyValue]})
   }

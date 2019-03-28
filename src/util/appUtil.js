@@ -34,6 +34,7 @@ export const setPassword = (enteredPass) => {
 }
 
 export const validatePassword = (enteredPass) =>{
+    // console.log(enteredPass)
     let validPass = password+''
     let validan = false;
     if(validPass.length === enteredPass.length) {
