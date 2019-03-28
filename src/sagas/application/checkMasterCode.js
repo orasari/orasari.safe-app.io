@@ -25,7 +25,7 @@ export function* checkMasterCode(action){
         }else{
             throw new Error();
         }
-        return {sn: 4815162342}
+        return response.data
     }
 
 }
