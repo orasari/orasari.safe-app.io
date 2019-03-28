@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/orasari.safe-app.io/static/css/main.2a8dedc2.chunk.css"
   },
   {
-    "revision": "18fc957c4fa98dad22a984a03c7819ff",
+    "revision": "304b030306d92102f41be9db70474d7f",
     "url": "/orasari.safe-app.io/index.html"
   }
 ];
