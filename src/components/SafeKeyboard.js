@@ -56,8 +56,12 @@ class SafeKeyboard extends Component {
             }
             else{
                 if(!passwordExists()){
-                  setPassword(this.state.passcode)
-                  setTimeout((this.props.dispatch(toggleLock(true, 'Ready'))), 3000)
+                  if(setPassword(this.state.passcode)){
+                      setTimeout((this.props.dispatch(toggleLock(true, 'Ready'))), 3000)
+                  }else {
+                      setTimeout((this.props.dispatch(toggleLock(false, 'Error'))), 3000)
+                  }
+
                 }else{
                   if(validatePassword(this.state.passcode)){
                     console.log("validan ")

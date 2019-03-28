@@ -11,34 +11,41 @@ export const passwordExists = () => {
 export const servicePassEntered = (enteredPass) => {
     let validPass = '000000'
     let validan = false;
-    for(let i=0; i<enteredPass.length; i++){
-        if(enteredPass[i]===validPass[i]) {
-            validan=true
-        }else {
-            validan=false
-            break;
+    if(enteredPass.length === validPass.length) {
+        for (let i = 0; i < enteredPass.length; i++) {
+            if (enteredPass[i] === validPass[i]) {
+                validan = true
+            } else {
+                validan = false
+                break;
+            }
+
         }
-    
     }
     if(validan) return true
     else return false
 }
 
-export const setPassword = (enteredPass) => { 
-    localStorage.setItem('password', enteredPass.join(''));    
+export const setPassword = (enteredPass) => {
+    if(enteredPass.length === 6) {
+        localStorage.setItem('password', enteredPass.join(''));
+        return true;
+    }else return false;
 }
 
 export const validatePassword = (enteredPass) =>{
     let validPass = password+''
     let validan = false;
-    for(let i=0; i<enteredPass.length; i++){
-        if(enteredPass[i]===validPass[i]) {
-            validan=true
-        }else {
-            validan=false
-            break;
+    if(validPass.length === enteredPass.length) {
+        for (let i = 0; i < enteredPass.length; i++) {
+            if (enteredPass[i] === validPass[i]) {
+                validan = true
+            } else {
+                validan = false
+                break;
+            }
+
         }
-    
     }
     if(validan) return true
     else return false
