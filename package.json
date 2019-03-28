@@ -14,7 +14,8 @@
     "redux": "4.0.1",
     "lodash": "4.17.11",
     "react-idle-timer": "4.2.3",
-    "axios": "0.18.0"
+    "axios": "0.18.0",
+    "react-router-dom": "5.0.0"
   },
   "devDependencies": {
     "gh-pages": "1.0.0",
