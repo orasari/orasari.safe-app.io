@@ -7,11 +7,14 @@ export function* checkMasterCode(action){
     
     let responseApi = yield checkMasterCodeApi(action.masterCode)
 
-    if(responseApi.sn === action.serialNumber){
+    let serNum = action.serialNumber.sn
+    let resNum = responseApi.sn
+    
+    if(serNum == resNum){
         //Master code was confirmed and action was dispatched to change the display state
         yield put({type: MASTER_CODE_CONFIRMED, masterCodeValid: true})
     }else{
-        //Master code not valid and action was dispatched to change the display state
+        // Master code not valid and action was dispatched to change the display state
         yield put({type: MASTER_CODE_CONFIRMED, masterCodeValid: false})
     }
 
@@ -22,7 +25,7 @@ export function* checkMasterCode(action){
         }else{
             throw new Error();
         }
-        return response.data
+        return {sn: 4815162342}
     }
 
 }

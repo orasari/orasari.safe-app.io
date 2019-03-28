@@ -37,21 +37,10 @@ export const validatePassword = (enteredPass) =>{
     let password = JSON.parse(localStorage.getItem('password'))
     let validPass = password+''
     let validan = false;
-    console.log("val enteredPass",enteredPass)
-    console.log("val password",validPass)
-    
-    console.log("password password",password)
-    console.log("leng 1 ",validPass.length)
-    console.log("leng 2 ",enteredPass.length)
-    console.log("leng 31 ",validPass.length === enteredPass.length)
-    console.log("leng 4 ",validPass.length == enteredPass.length)
 
     if(validPass.length === enteredPass.length) {
         for (let i = 0; i < enteredPass.length; i++) {
             if (enteredPass[i] === validPass[i]) {
-                console.log("enteredPass ",enteredPass)
-                console.log("validPass ",validPass)
-                console.log("oba ",enteredPass[i] === validPass[i])
                 validan = true
             } else {
                 validan = false
@@ -65,7 +54,6 @@ export const validatePassword = (enteredPass) =>{
 }
 
 export function handleKeyPress(event) {
-    console.log(event.keyCode)
     switch(event.keyCode){
       case 49: 
       return 1

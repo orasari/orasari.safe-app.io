@@ -41,7 +41,6 @@ class App extends Component {
   onKeyClick (event){
     let keyValue = handleKeyPress(event)
     if(keyValue==='ENTER'){
-      console.log("ENTER")
       this.submitPasscode(this.state.passcode, 'nbt')
     }else
     this.setState({passcode: [...this.state.passcode, keyValue]})
@@ -50,17 +49,14 @@ class App extends Component {
   submitPasscode(){
   
     if(servicePassEntered(this.state.passcode)){
-        console.log("service")
         // this.props.dispatch(enterServiceMode('Service'))
     }else{
     if(!passwordExists()){
       setPassword(this.state.passcode)
     }else{
     if(validatePassword(this.state.passcode)){
-      console.log("validan ")
       // this.props.dispatch(submitPasscodeAction(true))
     }else {
-      console.log("validan NOT")
       // this.props.dispatch(submitPasscodeAction(false))
     }
   }}

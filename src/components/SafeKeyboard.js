@@ -26,9 +26,7 @@ class SafeKeyboard extends Component {
   }
 
   submitPasscode(){
-    console.log("asdadsada")
     if(this.state.passcode && this.state.passcode.length>0){
-          console.log("Passcode je ",this.state.passcode)
     //If it is in service mode, dispatch validating
     if(servicePassEntered(this.state.passcode)){
       // this.props.dispatch(isValidating('Validation'))
@@ -39,19 +37,16 @@ class SafeKeyboard extends Component {
     else if(this.props.status !== 'Service') {
       this.props.dispatch(isLoading('Unlocking'))
     }
-    console.log("pre set time")
     setTimeout(()=>{
       if(this.props.status === 'Service'){    
         this.props.dispatch(checkMasterCode(this.state.passcode, serialNumber))
         this.setState({passcode: []}) 
       }
       else{
-        console.log("pre set lengthththth ")
         if(this.state.passcode.length>0){   
           if(servicePassEntered(this.state.passcode)){
               this.props.dispatch(enterServiceMode('Service'))
           }else{
-            console.log("exits ??")
               if(!passwordExists()){
                 if(setPassword(this.state.passcode)){
                     setTimeout((this.props.dispatch(toggleLock(true, 'Ready'))), 3000)
@@ -59,11 +54,8 @@ class SafeKeyboard extends Component {
                     setTimeout((this.props.dispatch(toggleLock(false, 'Error'))), 3000)
                 }
               }else{
-                console.log("pre validate")
                 if(validatePassword(this.state.passcode)){
-                  console.log('pre')
                   this.props.dispatch(submitPasscodeAction(true))
-                  console.log('posle')
                 }else {
                   this.props.dispatch(submitPasscodeAction(false))
                 }
