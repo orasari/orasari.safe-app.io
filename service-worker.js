@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/orasari.safe-app.io/precache-manifest.a7f52bda89529c471a625b73dc7d695d.js"
+  "/orasari.safe-app.io/precache-manifest.98a4ba99370ed0c04cea5916662a5d06.js"
 );
 
 workbox.clientsClaim();
