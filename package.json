@@ -2,6 +2,7 @@
   "name": "computer-rock",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://orasari/orasari.safe-app.io",
   "dependencies": {
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
@@ -15,7 +16,13 @@
     "react-idle-timer": "4.2.3",
     "axios": "0.18.0"
   },
+  "devDependencies": {
+    "gh-pages": "1.0.0",
+    "react-scripts": "2.1.8"
+  },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
